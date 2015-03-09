@@ -1,0 +1,33 @@
+*.py[co]
+__pycache__*
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+# Distribution
+dist/*
+
+# Sublime project files
+*.sublime*
+
+# Mac stuff
+.DS_Store
+
+docs/_build*
