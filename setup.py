@@ -17,7 +17,7 @@ except:
 setup(
     name='Flask-APIBlueprint',
     version='1.0',
-    url='http://example.com/flask-sqlite3/',
+    url='https://github.com/gwongz/flask-apiblueprint',
     license='BSD',
     author='Grace Wong',
     author_email='gwongz@gmail.com',
