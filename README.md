@@ -10,8 +10,7 @@ If you're building an API with Blueprints in Flask, you don't have to redeclare 
 
 #### What do I need?
 
-Flask. `pip` or `easy_install` will
-install it for you if you do `pip install Flask-APIBlueprint`.
+Flask. `pip` will install it for you if you do `pip install Flask-APIBlueprint`.
 Using a [virtualenv](https://virtualenv.pypa.io/en/latest/) is encouraged.
 
 
@@ -27,10 +26,12 @@ $ python test_apiblueprint.py
 
 ```
 # construct and register a blueprint
+
 api_v1 = APIBlueprint('api_v1', __name__, subdomain='', url_prefix='/api/v1')
 app.register(api_v1)
 
 # construct a blueprint that inherits all routes from api_v1 blueprint
+
 api_v2 = APIBlueprint('api_v2', __name__, subdomain='', url_prefix='/api/v2',inherit_from=api_v1, remapping=None)
 app.register(api_v2)
 ```
