@@ -6,6 +6,11 @@
 Welcome to flask-apiblueprint's documentation!
 ==============================================
 
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
 Construct an APIBlueprint
 -------------------------
 
@@ -21,6 +26,7 @@ Provide the ``inherit_from`` parameter to the constructor to copy routes from an
     api_v2 = APIBlueprint('api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1)
 
     app.register(api_v2)
+
 
 That means routes get copied over so you can just do this:
 
@@ -42,18 +48,17 @@ That means routes get copied over so you can just do this:
         "username": "gimmebear"
     }
 
+
+
 Override routes
 ---------------
-If you want to override a route, you just redefine it on your APIBlueprint. For instance, if in the new version of your API you decide you want ``user_info`` to return a dictionary of data:
+If you want to override a route, you just redefine it on your APIBlueprint. For instance, if in the new version of your API you decide you want ``user_info`` to return a dictionary of data::
 
-::
     @api_v2.route('/user/<user_id>/')
     def user_info(user_id):
-        username = User.query.get(user_id).username
-        firstname = User.query.get(user_id).firstname
-        return jsonify(
-            data=dict(username=username, firstname=firstname)
-        )
+    username = User.query.get(user_id).username
+    firstname = User.query.get(user_id).firstname
+    return jsonify(data=dict(username=username, firstname=firstname))
 
     GET /api/v1/user/1/
     {
@@ -69,11 +74,11 @@ If you want to override a route, you just redefine it on your APIBlueprint. For 
         }
     }
 
+
+
 Remap endpoints
 ---------------
-You might decide that you want to change the endpoint of a particular route but not the response in a new version of your API. You can do this via the ``remapping`` keyword argument:
-
-::
+You might decide that you want to change the endpoint of a particular route but not the response in a new version of your API. You can do this via the ``remapping`` keyword argument::
     remapping = {'/users/list/': '/users/'}
 
     api_v2 = APIBlueprint(
@@ -92,6 +97,7 @@ You might decide that you want to change the endpoint of a particular route but 
             {
                 "username": "gimmecat"
             },
+
             {
                 "username": "gimmebear"
             }
@@ -99,44 +105,7 @@ You might decide that you want to change the endpoint of a particular route but 
     }
 
     GET /api/v2/users/
-    {
-        "data": [
-            {
-                "username": "gimmecat"
-            },
-            {
-                "username": "gimmebear"
-            }
-        ]
-    }
-
-
-
-  See the response: <a href="/api/v1/users/list/">/api/v1/users/list/</a>
-                    <a href="/api/v2/users/">/api/v2/users/</a>
-
-  </pre></code>
-
-  </div>
-  </body>
-</html>
-
-Remap endpoints
----------------
-With the ``APIBlueprint`` class you can also remap endpoints.
-Refer to the [sample_api] for more detailed implementation or run the example:
-
-```
-$ python app.py
-```
-
-You'll need to `pip install Flask-SQLAlchemy` in order to run the example app.
-
-
-Contents:
-
-.. toctree::
-   :maxdepth: 2
+    {"data": [{"username": "gimmecat"},{"username": "gimmebear"}]}
 
 
 
@@ -144,6 +113,5 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
-.. * :ref:`modindex`
 * :ref:`search`
 
