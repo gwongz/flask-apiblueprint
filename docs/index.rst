@@ -6,19 +6,18 @@
 Welcome to flask-apiblueprint's documentation!
 ==============================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
 
 Construct an APIBlueprint
 -------------------------
 
-An ``APIBlueprint`` extends the `flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>` class.
+An ``APIBlueprint`` extends the ``flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>`` class.
 
 Provide the ``inherit_from`` parameter to the constructor to copy routes from another ``APIBlueprint``.
 
 ::
+
     api_v1 = APIBlueprint('api_v1', __name__, subdomain='', url_prefix='/api/v1')
 
     app.register(api_v1)
@@ -38,21 +37,23 @@ That means routes get copied over so you can just do this:
         return jsonify(username=username)
 
     GET /api/v1/user/1/
-    {
-        "username": "gimmebear"
-    }
+
+        {
+            "username": "gimmebear"
+        }
 
 
     GET /api/v2/user/1/
-    {
-        "username": "gimmebear"
-    }
+
+        {
+            "username": "gimmebear"
+        }
 
 
 
 Override routes
 ---------------
-If you want to override a route, you just redefine it on your APIBlueprint. For instance, if in the new version of your API you decide you want ``user_info`` to return a dictionary of data::
+If you want to override a route, you just redefine it on your ``APIBlueprint``. For instance, if in the new version of your API you decide you want ``user_info`` to return a dictionary of data::
 
     @api_v2.route('/user/<user_id>/')
     def user_info(user_id):
@@ -61,24 +62,28 @@ If you want to override a route, you just redefine it on your APIBlueprint. For 
     return jsonify(data=dict(username=username, firstname=firstname))
 
     GET /api/v1/user/1/
-    {
-        "username": "gimmebear"
-    }
+
+        {
+            "username": "gimmebear"
+        }
 
 
     GET /api/v2/user/1/
-    {
-        "data": {
-            "firstname": "Smoky",
-            "username": "gimmebear"
+        {
+            "data": {
+                "firstname": "Smoky",
+                "username": "gimmebear"
+            }
         }
-    }
 
 
 
 Remap endpoints
 ---------------
-You might decide that you want to change the endpoint of a particular route but not the response in a new version of your API. You can do this via the ``remapping`` keyword argument::
+You might decide that you want to change the endpoint of a particular route but not the response in a new version of your API. You can do this via the ``remapping`` keyword argument
+
+::
+
     remapping = {'/users/list/': '/users/'}
 
     api_v2 = APIBlueprint(
@@ -92,26 +97,35 @@ You might decide that you want to change the endpoint of a particular route but 
 
 
     GET /api/v1/users/list/
-    {
-        "data": [
-            {
-                "username": "gimmecat"
-            },
 
-            {
-                "username": "gimmebear"
-            }
-        ]
-    }
+        {
+            "data": [
+                {
+                    "username": "gimmecat"
+                },
+
+                {
+                    "username": "gimmebear"
+                }
+            ]
+        }
 
     GET /api/v2/users/
-    {"data": [{"username": "gimmecat"},{"username": "gimmebear"}]}
 
+        {
+            "data": [
+                {
+                    "username": "gimmecat"
+                },
+                {
+                    "username": "gimmebear"
+                }
+            ]
+        }
 
 
 Indices and tables
 ==================
-
-* :ref:`genindex`
+.. * :ref:`genindex`
 * :ref:`search`
 
