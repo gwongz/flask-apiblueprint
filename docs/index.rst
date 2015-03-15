@@ -3,18 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to flask-apiblueprint's documentation!
+Flask-APIBlueprint | Read the Docs
 ==============================================
-
 .. toctree::
    :maxdepth: 2
+
+==================
+Flask-APIBlueprint
+==================
+Flask-APIBlueprint is a Flask micro-framework extension which adds support for route inheritance for Blueprints.
 
 Construct an APIBlueprint
 -------------------------
 
-An ``APIBlueprint`` extends the ``flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>`` class.
+An ``APIBlueprint`` extends the `flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>_` class.
 
-Provide the ``inherit_from`` parameter to the constructor to copy routes from another ``APIBlueprint``.
+Providing the ``inherit_from`` parameter to the constructor copies routes from another ``APIBlueprint``.
 
 ::
 
@@ -27,7 +31,7 @@ Provide the ``inherit_from`` parameter to the constructor to copy routes from an
     app.register(api_v2)
 
 
-That means routes get copied over so you can just do this:
+That means you can just do this:
 
 ::
 
@@ -36,14 +40,14 @@ That means routes get copied over so you can just do this:
         username = User.query.get(user_id).username
         return jsonify(username=username)
 
-    GET /api/v1/user/1/
+    GET /api/v1/user/1/ returns:
 
         {
             "username": "gimmebear"
         }
 
 
-    GET /api/v2/user/1/
+    GET /api/v2/user/1/ returns:
 
         {
             "username": "gimmebear"
@@ -53,22 +57,22 @@ That means routes get copied over so you can just do this:
 
 Override routes
 ---------------
-If you want to override a route, you just redefine it on your ``APIBlueprint``. For instance, if in the new version of your API you decide you want ``user_info`` to return a dictionary of data::
+If you want to override a route, you just redefine it on your ``APIBlueprint``. For instance, you version your API and decide you want to return a dictionary of user data instead of just a username::
 
     @api_v2.route('/user/<user_id>/')
     def user_info(user_id):
-    username = User.query.get(user_id).username
-    firstname = User.query.get(user_id).firstname
-    return jsonify(data=dict(username=username, firstname=firstname))
+        username = User.query.get(user_id).username
+        firstname = User.query.get(user_id).firstname
+        return jsonify(data=dict(username=username, firstname=firstname))
 
-    GET /api/v1/user/1/
+    GET /api/v1/user/1/ returns:
 
         {
             "username": "gimmebear"
         }
 
 
-    GET /api/v2/user/1/
+    GET /api/v2/user/1/ returns:
         {
             "data": {
                 "firstname": "Smoky",
@@ -96,7 +100,7 @@ You might decide that you want to change the endpoint of a particular route but 
         return jsonify(data=usernames)
 
 
-    GET /api/v1/users/list/
+    GET /api/v1/users/list/ returns:
 
         {
             "data": [
@@ -110,7 +114,7 @@ You might decide that you want to change the endpoint of a particular route but 
             ]
         }
 
-    GET /api/v2/users/
+    GET /api/v2/users/ returns:
 
         {
             "data": [
@@ -122,10 +126,7 @@ You might decide that you want to change the endpoint of a particular route but 
                 }
             ]
         }
-
 
 Indices and tables
 ==================
-.. * :ref:`genindex`
-* :ref:`search`
-
+.. * :ref:`search`

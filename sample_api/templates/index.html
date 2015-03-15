@@ -2,27 +2,14 @@
 <html>
   <head>
     <title>APIBlueprint example</title>
-    <style type="text/css">
-      body {font-family: 'Georgia', 'serif';}
-      pre{
-        background-color: #eee;
-        font-family: 'Menlo', monospace;
-        font-size: 1em;
-        line-height: 1.2em;
-        padding-top: 13px;}
-      .wrapper{padding: 75px 70px;}
-      .highlight {font-weight: bold}
-      .b{color: #004461;}
-      .s {color: #4e9a06;}
-      }
-    </style>
+    <link rel="stylesheet" href="./static/styles.css">
+
   </head>
 
   <body>
-  <div class="wrapper">
-    <h1>APIBlueprint Example</h1>
+  <h1>APIBlueprint Example</h1>
 
-    An APIBlueprint extends the <b><a href="http://flask.pocoo.org/docs/0.10/blueprints/" target="_blank">flask.Blueprint</a></b> class. Use the <b>APIBlueprint</b> constructor to implement:
+  An APIBlueprint extends the <b><a href="http://flask.pocoo.org/docs/0.10/blueprints/" target="_blank">flask.Blueprint</a></b> class. Use the APIBlueprint constructor to implement:
 
   <code><pre>
   api_v1 = APIBlueprint(<span class="s">'api_v1'</span>, __name__, subdomain=<span class="s">''</span>, url_prefix=<span class="s">'/api/v1'</span>)
@@ -33,36 +20,46 @@
   <span class="highlight b">def</span> media_info(media_id):
       kind = Media.query.get(media_id).kind
       <span class="highlight b">return</span> jsonify(kind=kind)
-  See the response: <a href="/api/v1/media/1/">/api/v1/media/1/</a>
-  </pre></code>
 
-  <code><pre>
   @api_v1.route(<span class="s">'/user/&lt;user_id&gt;/'</span>)
   <span class="highlight b">def</span> username(user_id):
     username = User.query.get(user_id).username
     <span class="highlight b">return</span> jsonify(username=username)
-
-  See the response: <a href="/api/v1/user/1/">/api/v1/user/1/</a>
   </pre></code>
 
-    <h2>Inheritance</h2>
-    If you want to inherit the routes defined in another APIBlueprint, you can
-    do that by providing the <code>inherit_from</code> parameter to the APIBlueprint
-    constructor. Routes that are not overridden get copied over and you don't have to
-    redefine them.
+  <hr>
+  <div>
+  View the response:
+  <p>
+    <a href="/api/v1/media/1/">/api/v1/media/1/</a><br>
+    <a href="/api/v1/user/1/">/api/v1/user/1/</a>
+  </p>
+  </div>
+
+
+  <h2>Inheritance</h2>
+  Pass the <code>inherit_from</code> parameter to the constructor to copy over
+  routes from another APIBlueprint.
 
   <code><pre>
   api_v2 = APIBlueprint(
     <span class="s">'api_v2'</span>, __name__, subdomain=<span class="s">''</span>, url_prefix=<span class="s">'/api/v2'</span>, inherit_from=api_v1
   )
-
-  See the response: <a href="/api/v1/media/1">/api/v1/media/1/</a>
-                    <a href="/api/v2/media/1/">/api/v2/media/1/</a>
   </pre></code>
 
-    <h2>Override routes</h2>
-    If you want to override a route, you just redefine it on your APIBlueprint.
-    For instance, in the new version of your API you decide you want <code>user_info</code> to return a dictionary of data:
+  <hr>
+  <div>
+  View the response:
+  <p>
+    <a href="/api/v1/media/1">/api/v1/media/1/</a><br>
+    <a href="/api/v2/media/1/">/api/v2/media/1/</a>
+  </p>
+  </div>
+
+
+  <h2>Override routes</h2>
+  Redefine a route if you want to override the inherited view function.
+  For instance, in the new version of your API you decide you want to return a dictionary of data instead of just a username at the <code>/user/&lt;user_id&gt;</code> endpoint:
 
   <code><pre>
   @api_v2.route(<span class="s">'/user/&lt;user_id&gt;/'</span>)
@@ -70,14 +67,21 @@
     username = User.query.get(user_id).username
     firstname = User.query.get(user_id).firstname
     <span class="highlight b">return</span> jsonify(data=dict(username=username, firstname=firstname))
-
-  See the response: <a href="/api/v1/user/1/">/api/v1/user/1/</a>
-                    <a href="/api/v2/user/1/">/api/v2/user/1/</a>
-
   </pre></code>
 
-    <h2>Remap endpoints</h2>
-    You might decide that you want to change the endpoint of a particular route but not the response in a new version of your API. You can do this via the <code>remapping</code> keyword argument:
+  <hr>
+  <div>
+  View the response:
+  <p>
+    <a href="/api/v1/user/1/">/api/v1/user/1/</a><br>
+    <a href="/api/v2/user/1/">/api/v2/user/1/</a>
+  </p>
+  </div>
+
+  <h2>Remap endpoints</h2>
+  You can change the endpoint of an inherited route via the <code>
+  remapping</code> keyword argument. To restructure endpoints when versioning
+  an API, all you have to do is this:
 
   <code><pre>
   remapping = {<span class="s">'/users/list/'</span>: <span class="s">'/users/'</span>}
@@ -86,12 +90,17 @@
     <span class="s">'api_v2'</span>, __name__, subdomain=<span class="s">''</span>, url_prefix=<span class="s">'/api/v2'</span>, inherit_from=api_v1,
     remapping=remapping
   )
-
-  See the response: <a href="/api/v1/users/list/">/api/v1/users/list/</a>
-                    <a href="/api/v2/users/">/api/v2/users/</a>
-
   </pre></code>
 
+  <hr>
+  <div>
+  View the response:
+  <p>
+    <a href="/api/v1/users/list/">/api/v1/users/list/</a><br>
+    <a href="/api/v2/users/">/api/v2/users/</a>
+  </p>
   </div>
+
+
   </body>
 </html>
