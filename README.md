@@ -60,4 +60,4 @@ Use the `remapping` keyword argument in the constructor to change the endpoints 
 
 ```
 
-See the [docs](http://flask-apiblueprint.readthedocs.org/en/latest/)for more details.
+See the [docs](http://flask-apiblueprint.readthedocs.org/en/latest/) for more details.

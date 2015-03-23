@@ -16,7 +16,7 @@ Flask-APIBlueprint is a Flask micro-framework extension which adds support for r
 Construct an APIBlueprint
 -------------------------
 
-An ``APIBlueprint`` extends the `flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>_` class.
+An ``APIBlueprint`` extends the `flask.Blueprint <http://flask.pocoo.org/docs/0.10/blueprints/>`_ class.
 
 Providing the ``inherit_from`` parameter to the constructor copies routes from another ``APIBlueprint``.
 
@@ -26,7 +26,12 @@ Providing the ``inherit_from`` parameter to the constructor copies routes from a
 
     app.register(api_v1)
 
-    api_v2 = APIBlueprint('api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1)
+    api_v2 = APIBlueprint(
+        'api_v2', __name__,
+        subdomain='',
+        url_prefix='/api/v2',
+        inherit_from=api_v1
+    )
 
     app.register(api_v2)
 
@@ -91,7 +96,12 @@ You might decide that you want to change the endpoint of a particular route but 
     remapping = {'/users/list/': '/users/'}
 
     api_v2 = APIBlueprint(
-    'api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1, remapping=remapping)
+        'api_v2',
+         __name__,
+         subdomain='',
+         url_prefix='/api/v2',
+         inherit_from=api_v1, remapping=remapping
+    )
 
     @api_v1.route('/users/list/')
     def users_list():
@@ -129,4 +139,3 @@ You might decide that you want to change the endpoint of a particular route but 
 
 Indices and tables
 ==================
-.. * :ref:`search`
