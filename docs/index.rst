@@ -16,7 +16,7 @@ Flask-APIBlueprint is a Flask micro-framework extension which adds support for r
 Construct an APIBlueprint
 -------------------------
 
-An ``APIBlueprint`` extends the `flask.Blueprint_` class.
+An ``APIBlueprint`` extends the `flask.Blueprint`_ class.
 
 Providing the ``inherit_from`` parameter to the constructor copies routes from another ``APIBlueprint``.
 
