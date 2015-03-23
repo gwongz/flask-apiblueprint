@@ -22,8 +22,8 @@ $ python test_apiblueprint.py
 
 #### How do I implement this?
 
-###### Inheritance
-Use the `inherit_from` keyword argument in the `APIBlueprint constructor` to copy routes over from another `APIBlueprint`.
+##### Inheritance
+Use the `inherit_from` keyword argument in the `APIBlueprint` constructor to copy routes over from another `APIBlueprint`.
 
 ```
 api_v2 = APIBlueprint(
@@ -31,7 +31,7 @@ api_v2 = APIBlueprint(
   )
 ```
 
-###### Override routes
+##### Override routes
 To override copied routes, just redeclare them.
 
 ```
@@ -47,7 +47,7 @@ To override copied routes, just redeclare them.
         return jsonify(data=dict(username=username, firstname=firstname))
 ```
 
-###### Remap endpoints
+##### Remap endpoints
 Use the `remapping` keyword argument in the constructor to change the endpoints of inherited routes.
 
 ```
@@ -60,4 +60,8 @@ Use the `remapping` keyword argument in the constructor to change the endpoints 
 
 ```
 
-See the [docs](http://flask-apiblueprint.readthedocs.org/en/latest/) for more details.
+See the [docs](http://flask-apiblueprint.readthedocs.org/en/latest/) for more details or run the `app.py` file to see how the [sample_api](sample_api) is implemented.
+
+```
+$ python app.py
+```
