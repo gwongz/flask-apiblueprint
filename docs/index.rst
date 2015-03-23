@@ -137,6 +137,8 @@ You might decide that you want to change the endpoint of a particular route but 
             ]
         }
 
-.. _flask.Blueprint: http://flask.pocoo.org/docs/0.10/blueprints/
+
+
 Indices and tables
 ==================
+.. _flask.Blueprint: http://flask.pocoo.org/docs/0.10/blueprints/
