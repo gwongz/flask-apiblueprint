@@ -28,7 +28,7 @@ Use the `inherit_from` keyword argument in the `APIBlueprint` constructor to cop
 ```
 api_v2 = APIBlueprint(
     'api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1
-  )
+)
 ```
 
 ##### Override routes
@@ -36,27 +36,27 @@ To override copied routes, just redeclare them.
 
 ```
 @api_v1.route('/user/<user_id>/')
-    def username(user_id):
-        username = User.query.get(user_id).username
-        return jsonify(username=username)
+def username(user_id):
+    username = User.query.get(user_id).username
+    return jsonify(username=username)
 
 @api_v2.route('/user/<user_id>/')
-    def user_info(user_id):
-        username = User.query.get(user_id).username
-        firstname = User.query.get(user_id).firstname
-        return jsonify(data=dict(username=username, firstname=firstname))
+def user_info(user_id):
+    username = User.query.get(user_id).username
+    firstname = User.query.get(user_id).firstname
+    return jsonify(data=dict(username=username, firstname=firstname))
 ```
 
 ##### Remap endpoints
 Use the `remapping` keyword argument in the constructor to change the endpoints of inherited routes.
 
 ```
- remapping = {'/users/list/': '/users/'}
+remapping = {'/users/list/': '/users/'}
 
-  api_v2 = APIBlueprint(
+api_v2 = APIBlueprint(
     'api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1,
     remapping=remapping
-  )
+)
 
 ```
 
