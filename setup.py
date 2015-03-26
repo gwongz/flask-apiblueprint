@@ -16,7 +16,7 @@ except:
 
 setup(
     name='Flask-APIBlueprint',
-    version='1.0',
+    version='0.1',
     url='https://github.com/gwongz/flask-apiblueprint',
     license='BSD',
     author='Grace Wong',
@@ -26,6 +26,7 @@ setup(
     packages=['flask_apiblueprint'],
     zip_safe=False,
     include_package_data=True,
+    download_url='https://github.com/gwongz/flask-apiblueprint/tarball/0.1',
     platforms='any',
     install_requires=[
         'Flask'

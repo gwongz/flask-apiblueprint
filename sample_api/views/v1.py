@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from flask_apiblueprint import APIBlueprint
+from flask.ext.apiblueprint import APIBlueprint
 from sample_api import User, Media
 
 api_v1 = APIBlueprint('api_v1', __name__, subdomain='', url_prefix='/api/v1')

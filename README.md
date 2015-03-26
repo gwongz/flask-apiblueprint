@@ -10,7 +10,12 @@ If you're building an API with Blueprints in Flask, you don't have to redeclare 
 
 #### What do I need?
 
-Flask. 
+Flask. It will automatically be installed if you install the extension via pip:
+
+```
+$ pip install flask-apiblueprint
+```
+
 
 #### Where are the tests?
 
