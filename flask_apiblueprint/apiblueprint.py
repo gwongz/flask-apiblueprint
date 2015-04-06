@@ -14,12 +14,12 @@ class APIBlueprint(Blueprint):
     def __init__(self, *args, **kwargs):
         self.routes_to_views_map = {}
         self.inherit_from = kwargs.pop('inherit_from', None)
-        remapping = kwargs.pop('remapping', None)
+        self.remapping = kwargs.pop('remapping', None)
 
         super(APIBlueprint, self).__init__(*args, **kwargs)
         self.deferred_functions = {}
         if self.inherit_from:
-            self.copy_routes(remapping=remapping)
+            self.copy_routes(remapping=self.remapping)
 
     def add_url_rule(self, rule, endpoint=None, view_func=None, **options):
         """
@@ -71,7 +71,7 @@ class APIBlueprint(Blueprint):
 
     def copy_routes(self, remapping=None):
         """
-        If a Blueprint inherits from another, copy over all of the parent's
+        If a Blueprint inherits from another, we copy over all of the parent's
         routes.
         """
         if not self.inherit_from:
@@ -84,8 +84,10 @@ class APIBlueprint(Blueprint):
             view_func = view_info.get('view_func')
             options_dict = view_info.get('options')
 
-            if remapping and remapping.get(rule):
-                rule = remapping.get(rule)
+            if remapping and rule in remapping:
+                if remapping[rule]:
+                    rule = remapping[rule]
+                else:
+                    continue
 
             self.add_url_rule(rule, view_func=view_func, **options_dict)
-

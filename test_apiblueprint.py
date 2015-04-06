@@ -140,9 +140,24 @@ class TestAPIBlueprintIntegration(TestAPIBlueprint):
 
         self.app.register_blueprint(inherited_bp)
 
-        self.assertEqual(self.client.get('/v2/foo').status_code, 404)
+        self.assert404(self.client.get('/v2/foo'))
         self.assertEqual(self.client.get('/v2/faz').data, self.client.get('/v1/foo').data)
         self.assertEqual(self.client.get('/v2/bar').data, self.client.get('/v1/bar').data)
+
+
+    def test_deprecated_routes_not_copied(self):
+        inherited_bp = APIBlueprint(
+            'bp_v2',
+            __name__,
+            url_prefix='/v2',
+            inherit_from=self.bp,
+            remapping={
+                '/foo': None
+            }
+        )
+        self.app.register_blueprint(inherited_bp)
+        self.assert200(self.client.get('v1/foo'))
+        self.assert404(self.client.get('v2/foo'))
 
 if __name__ == '__main__':
     unittest.main()
