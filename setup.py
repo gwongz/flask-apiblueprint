@@ -26,7 +26,7 @@ setup(
     packages=['flask_apiblueprint'],
     zip_safe=False,
     include_package_data=True,
-    download_url='https://github.com/gwongz/flask-apiblueprint/tarball/0.1',
+    download_url='https://github.com/gwongz/flask-apiblueprint/tarball/0.2',
     platforms='any',
     install_requires=[
         'Flask'
