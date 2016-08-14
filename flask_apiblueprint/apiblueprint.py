@@ -8,8 +8,10 @@
 import six
 from flask import Blueprint
 
+
 class APIBlueprint(Blueprint):
-    class InheritanceError(Exception): pass
+    class InheritanceError(Exception):
+        pass
 
     def __init__(self, *args, **kwargs):
         self.routes_to_views_map = {}
@@ -32,7 +34,7 @@ class APIBlueprint(Blueprint):
         if endpoint:
             assert '.' not in endpoint, "Blueprint endpoints should not contain dots"
         self.record(lambda s:
-            s.add_url_rule(rule, endpoint, view_func, **options), rule=rule)
+                    s.add_url_rule(rule, endpoint, view_func, **options), rule=rule)
 
     def record(self, func, rule=None):
         """
