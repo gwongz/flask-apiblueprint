@@ -5,11 +5,13 @@
     :copyright: (c) 2015 by Grace Wong.
     :license: BSD, see LICENSE for more details.
 """
-
+import six
 from flask import Blueprint
 
+
 class APIBlueprint(Blueprint):
-    class InheritanceError(Exception): pass
+    class InheritanceError(Exception):
+        pass
 
     def __init__(self, *args, **kwargs):
         self.routes_to_views_map = {}
@@ -32,7 +34,7 @@ class APIBlueprint(Blueprint):
         if endpoint:
             assert '.' not in endpoint, "Blueprint endpoints should not contain dots"
         self.record(lambda s:
-            s.add_url_rule(rule, endpoint, view_func, **options), rule=rule)
+                    s.add_url_rule(rule, endpoint, view_func, **options), rule=rule)
 
     def record(self, func, rule=None):
         """
@@ -66,7 +68,7 @@ class APIBlueprint(Blueprint):
                                view_func=self.send_static_file,
                                endpoint='static')
 
-        for rule, deferred in self.deferred_functions.iteritems():
+        for rule, deferred in six.iteritems(self.deferred_functions):
             deferred(state)
 
     def copy_routes(self, remapping=None):
@@ -80,7 +82,7 @@ class APIBlueprint(Blueprint):
             )
 
         parent_blueprint = self.inherit_from
-        for rule, view_info in parent_blueprint.routes_to_views_map.iteritems():
+        for rule, view_info in six.iteritems(parent_blueprint.routes_to_views_map):
             view_func = view_info.get('view_func')
             options_dict = view_info.get('options')
 
