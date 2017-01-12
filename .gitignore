@@ -20,9 +20,13 @@ pip-log.txt
 # Unit test / coverage reports
 .coverage
 .tox
+.cache
 
 # Distribution
 dist/*
+
+venv/
+
 
 # Sublime project files
 *.sublime*

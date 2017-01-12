@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/gwongz/flask-apiblueprint.svg?branch=master)](https://travis-ci.org/gwongz/flask-apiblueprint)
+
 Flask-APIBlueprint
 ==================
 
-What is Flask-APIBlueprint?
+iWhat is Flask-APIBlueprint?
 -------------------------
 Flask-APIBlueprint is a Flask micro-framework extension which adds support for
 route inheritance for Blueprints.
@@ -27,7 +29,7 @@ $ pip install -r requirements_dev.txt
 To run the tests use the `test_apiblueprint.py` file:
 
 ```
-$ python test_apiblueprint.py
+$ py.test test_apiblueprint.py
 ```
 
 #### How do I implement this?
