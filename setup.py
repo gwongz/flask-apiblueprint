@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 """
 Flask-APIBlueprint
 -------------
@@ -5,7 +9,10 @@ Flask-APIBlueprint
 Route inheritance for Flask Blueprints.
 
 """
-from setuptools import setup
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    from disutils.core import setup
 
 try:
     with open('LONG_DESCRIPTION.rst') as f:
@@ -13,6 +20,10 @@ try:
 except:
     long_description = 'Route inheritance for Flask Blueprints'
 
+requirements = [
+    "flask>=0.11.1, <1.0",
+    "six>=1.10.0, <2.0"
+]
 
 setup(
     name='Flask-APIBlueprint',
@@ -28,9 +39,7 @@ setup(
     include_package_data=True,
     download_url='https://github.com/gwongz/flask-apiblueprint/tarball/0.2',
     platforms='any',
-    install_requires=[
-        'Flask'
-    ],
+    install_requires=requirements,
     test_suite='test_apiblueprint',
     classifiers=[
         'Environment :: Web Environment',
