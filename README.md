@@ -3,7 +3,7 @@
 Flask-APIBlueprint
 ==================
 
-iWhat is Flask-APIBlueprint?
+What is Flask-APIBlueprint?
 -------------------------
 Flask-APIBlueprint is a Flask micro-framework extension which adds support for
 route inheritance for Blueprints.

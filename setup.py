@@ -27,7 +27,7 @@ requirements = [
 
 setup(
     name='Flask-APIBlueprint',
-    version='0.2',
+    version='1.0.0',
     url='https://github.com/gwongz/flask-apiblueprint',
     license='BSD',
     author='Grace Wong',
@@ -37,7 +37,7 @@ setup(
     packages=['flask_apiblueprint'],
     zip_safe=False,
     include_package_data=True,
-    download_url='https://github.com/gwongz/flask-apiblueprint/tarball/0.2',
+    download_url='https://github.com/gwongz/flask-apiblueprint/tarball/v1.0.0',
     platforms='any',
     install_requires=requirements,
     test_suite='test_apiblueprint',
@@ -51,6 +51,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7'
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3'
     ]
 )
