@@ -7,7 +7,15 @@ from sample_api.views.v1 import api_v1
 
 remapping = {'/users/list/': '/users/'}
 
-api_v2 = APIBlueprint('api_v2', __name__, subdomain='', url_prefix='/api/v2', inherit_from=api_v1, remapping=remapping)
+api_v2 = APIBlueprint(
+    'api_v2',
+    __name__,
+    subdomain='',
+    url_prefix='/api/v2',
+    inherit_from=api_v1,
+    remapping=remapping
+)
+
 
 @api_v2.route('/user/<user_id>/')
 def user_info(user_id):

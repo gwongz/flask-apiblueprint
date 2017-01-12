@@ -6,7 +6,7 @@ except:
     from mock import patch, call
 
 from flask import Flask
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 
 from flask_apiblueprint import APIBlueprint
 import six
