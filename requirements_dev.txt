@@ -1,0 +1,8 @@
+flake8==2.4.1
+tox==2.1.1
+tox-pyenv==1.0.3
+coverage==4.0
+flask_sqlalchemy
+mock
+Flask-Testing
+-e .

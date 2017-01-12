@@ -16,6 +16,11 @@ Flask. It will automatically be installed if you install the extension via pip:
 $ pip install flask-apiblueprint
 ```
 
+To run tests or the sample, install the requirements in `requirements_dev.txt`:
+
+```
+$ pip install -r requirements_dev.txt
+```
 
 #### Where are the tests?
 
